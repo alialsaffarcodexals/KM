@@ -39,6 +39,14 @@ cd backend && cp .env.example .env
 
 The application relies on MongoDB, JWT tokens for authentication, and Socket.IO for live communications.
 
+## Login
+
+Authentication is currently handled on the client using hardcoded credentials.
+Use these values when signing in:
+
+- **Username:** `AB`
+- **Password:** `1234`
+
 ## Contributing
 
 Pull requests are welcome. Please ensure any install or build failures are fixed before opening a PR.

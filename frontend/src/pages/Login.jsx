@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import api from '../api';
 import { useAuth } from '../context/AuthContext';
 
 const Login = () => {
@@ -10,15 +9,14 @@ const Login = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setError('');
-    try {
-      const { data } = await api.post('/auth/login', { username, password });
-      login({ token: data.token });
-      navigate('/');
-    } catch (err) {
-      setError(err.response?.data?.message || 'Login failed');
+    if (username === 'AB' && password === '1234') {
+      login({ token: 'fake-token' });
+      navigate('/home');
+    } else {
+      setError('Invalid username or password');
     }
   };
 

@@ -18,6 +18,7 @@ const Dashboard = () => (
       <main className="flex-1 p-4">
         <Routes>
           <Route index element={<UserHome />} />
+          <Route path="home" element={<UserHome />} />
           <Route path="chat" element={<Chat />} />
           <Route path="voice" element={<Voice />} />
           <Route path="games" element={<Games />} />
