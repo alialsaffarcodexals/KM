@@ -3,9 +3,20 @@ import React, { createContext, useContext, useState } from 'react';
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const login = (data) => setUser(data);
-  const logout = () => setUser(null);
+  const [user, setUser] = useState(() => {
+    const token = localStorage.getItem('token');
+    return token ? { token } : null;
+  });
+
+  const login = (data) => {
+    setUser({ token: data.token });
+    localStorage.setItem('token', data.token);
+  };
+
+  const logout = () => {
+    setUser(null);
+    localStorage.removeItem('token');
+  };
 
   return (
     <AuthContext.Provider value={{ user, login, logout }}>
